@@ -2,6 +2,8 @@ import random
 
 i = 1
 
+running = True
+
 
 def exit1():
     while True:
@@ -11,47 +13,47 @@ def exit1():
             break
         elif new == "N" or new == "n":
             print("\n\033[1mKilépés\033[0m")
-            exit() 
+            running = False 
         else:
             print("\n\033[1mÍrj Y vagy N karaktert!\033[0m \n") 
     
 
-while True:
-    num1 = random.randrange(1, 101)
+while running:
+    genRandNum = random.randrange(1, 101)
     print("\n\033[1mGondoltam egy számra 1 és 100 között, 8 tipp-ből találd ki!\033[0m \n(X-re kilép!)\n")
 
     while i < 9:
+        print(genRandNum)
         while True:
-            num2 = input("{}. Tipp:".format(i))
-            if num2.isdigit():
-                num2 = int(num2)
+            userInput = input("{}. Tipp:".format(i))
+            if userInput.isdigit():
+                userInput = int(userInput)
                 break
-            elif num2 == "X" or num2 == "x":
+            elif userInput == "X" or userInput == "x":
                 print("\n\033[1mKilépés\033[0m")
                 exit()  
             else:
                 print("\033[1mSzámot írj be!\033[0m")
         
-        if num2 == num1:
+        if userInput == genRandNum:
             print("\033[1mTalált :)\033[0m \n")
             j = 0
             i = 1
+            genRandNum = random.randrange(1, 101)
             exit1()
             if j == 1:
                 break
-            else:
-                pass
         
-        elif num2 < num1:
-            if (num1-num2) > 50:
+        elif userInput < genRandNum:
+            if (genRandNum-userInput) > 50:
                 print("\033[1mTe kis csintalan, jóval nagyobbra gondoltam!!!\033[0m")
                 i +=1
             else:
                 print("\033[1mNagyobbra gondoltam!\033[0m")
                 i +=1
 
-        elif num2 > num1:
-            if (num2-num1) >50:
+        elif userInput > genRandNum:
+            if (userInput-genRandNum) >50:
                 print("\033[1mTe kis butuska, jóval kisebbre gondoltam!!!\033[0m")
                 i +=1
             else:
@@ -62,9 +64,7 @@ while True:
             print("\n\033[1mVesztettél :(\033[0m \n")
             j = 0
             i = 1
+            genRandNum = random.randrange(1, 101)
             exit1()
             if j == 1:
                 break
-            else:
-                pass
-            
